@@ -1,3 +1,11 @@
+# Atomikos
+tmlog*.log
+
+# JetBrains IntelliJ IdeaIU
+.idea/
+*.iml
+
+# Apache Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
