@@ -1,5 +1,6 @@
 # Atomikos
 tmlog*.log
+tmlog.lck
 
 # JetBrains IntelliJ IdeaIU
 .idea/

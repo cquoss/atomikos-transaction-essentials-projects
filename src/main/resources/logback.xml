@@ -1,0 +1,17 @@
+<configuration>
+
+    <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>target/run.log</file>
+        <append>false</append>
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d [%X{runName}] [%thread] %level %logger %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="fileAppender"/>
+    </root>
+
+</configuration>
