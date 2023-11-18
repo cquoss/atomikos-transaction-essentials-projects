@@ -1,2 +1,2 @@
-# atomikos-transaction-essentials-example
-Atomikos Transaction Essentials Example.
+# atomikos-transaction-essentials-projects
+Atomikos Transaction Essentials Example Projects.
