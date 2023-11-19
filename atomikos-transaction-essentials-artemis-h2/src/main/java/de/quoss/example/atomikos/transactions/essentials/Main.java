@@ -5,24 +5,24 @@ import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.atomikos.jms.AtomikosConnectionFactoryBean;
 import org.apache.activemq.artemis.jms.client.ActiveMQXAConnectionFactory;
 import org.h2.jdbcx.JdbcDataSource;
+
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.MessageConsumer;
+import jakarta.jms.Session;
+import javax.sql.DataSource;
+import jakarta.transaction.HeuristicMixedException;
+import jakarta.transaction.HeuristicRollbackException;
+import jakarta.transaction.NotSupportedException;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.Status;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.Transaction;
+import jakarta.transaction.TransactionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSConsumer;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.Session;
-import javax.sql.DataSource;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.Status;
-import javax.transaction.SystemException;
-import javax.transaction.Transaction;
-import javax.transaction.TransactionManager;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,7 +37,7 @@ public class Main {
         JdbcDataSource dataSource = new JdbcDataSource();
         dataSource.setUser("sa");
         dataSource.setPassword("");
-        dataSource.setURL("jdbc:h2:~/test");
+        dataSource.setURL("jdbc:h2:tcp://localhost/C:/Users/Cleme/h2/test");
 
         // set up active mq artemis xa connection factory
         ActiveMQXAConnectionFactory acf = new ActiveMQXAConnectionFactory();
@@ -59,16 +59,16 @@ public class Main {
         // init
         utm.init();
 
-        // begin transaction, timout 15 minutes
-        tm.setTransactionTimeout(15 * 60);
+        // begin transaction, timout 5 minutes
+        tm.setTransactionTimeout(5 * 60);
         tm.begin();
 
         // receive from jms (to-queue) and insert into database (customer table)
         try (Connection dbConnection = ds.getConnection();
-             Statement statement = dbConnection.createStatement();
-             javax.jms.Connection jmsConnection = cf.createConnection();
-             Session session = jmsConnection.createSession();
-             MessageConsumer consumer = session.createConsumer(session.createQueue("to-queue"))) {
+            Statement statement = dbConnection.createStatement();
+            jakarta.jms.Connection jmsConnection = cf.createConnection();
+            Session session = jmsConnection.createSession();
+            MessageConsumer consumer = session.createConsumer(session.createQueue("to-queue"))) {
 
             // drop table if exists
             String sql = "drop table messages if exists";
