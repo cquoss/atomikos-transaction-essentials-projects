@@ -1,4 +1,4 @@
-package de.quoss.example.atomikos.transactions.essentials;
+package de.quoss.example.atomikos.transactions.essentials.h2;
 
 import com.atomikos.icatch.jta.UserTransactionManager;
 import com.atomikos.jdbc.AtomikosDataSourceBean;

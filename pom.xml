@@ -20,7 +20,9 @@
     </dependencyManagement>
     <modules>
         <module>atomikos-transaction-essentials-artemis-h2</module>
+        <module>atomikos-transaction-essentials-db2-xa</module>
         <module>atomikos-transaction-essentials-h2</module>
+        <module>atomikos-transaction-essentials-h2-xa</module>
     </modules>
     <build>
         <pluginManagement>
