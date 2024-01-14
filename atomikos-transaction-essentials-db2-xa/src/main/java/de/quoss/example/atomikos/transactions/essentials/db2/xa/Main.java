@@ -39,12 +39,12 @@ public class Main {
         final AtomikosDataSourceBean result = new AtomikosDataSourceBean();
         final DB2XADataSource dataSource = new DB2XADataSource();
         dataSource.setDriverType(4);
-        dataSource.setServerName("zdev.ude.geno.lan");
-        dataSource.setPortNumber(481);
-        dataSource.setUser("dvdudbt");
-        dataSource.setPassword("all4you");
+        dataSource.setServerName("...");
+        dataSource.setPortNumber(0);
+        dataSource.setUser("...");
+        dataSource.setPassword("...");
         dataSource.setSslConnection(true);
-        dataSource.setDatabaseName("UIG2_DSN");
+        dataSource.setDatabaseName("...");
         result.setXaDataSource(dataSource);
         result.setUniqueResourceName("db2-xa");
         result.setMinPoolSize(10);
